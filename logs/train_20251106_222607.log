@@ -1,0 +1,224 @@
+2025-11-06 22:26:07,484 - __main__ - INFO - Random seed set to 42
+2025-11-06 22:26:07,484 - __main__ - INFO - Starting training mode...
+2025-11-06 22:26:07,484 - __main__ - INFO - Loading tokenizer from google-bert/bert-base-chinese
+2025-11-06 22:26:08,626 - __main__ - INFO - Loading data...
+2025-11-06 22:26:08,626 - __main__ - INFO - Attempting to load from online source...
+2025-11-06 22:26:12,421 - __main__ - INFO - Train samples: 9600
+2025-11-06 22:26:12,421 - __main__ - INFO - Validation samples: 1200
+2025-11-06 22:26:12,421 - __main__ - INFO - Test samples: 1200
+2025-11-06 22:26:12,421 - __main__ - INFO - Initializing model...
+2025-11-06 22:26:13,578 - __main__ - INFO - Total parameters: 102,269,186
+2025-11-06 22:26:13,578 - __main__ - INFO - Trainable parameters: 14,767,874
+2025-11-06 22:26:13,580 - __main__ - INFO - Starting training...
+2025-11-06 22:26:13,581 - __main__ - INFO - ==================================================
+2025-11-06 22:26:13,581 - __main__ - INFO - Starting training...
+2025-11-06 22:26:13,581 - __main__ - INFO - Total epochs: 10
+2025-11-06 22:26:13,581 - __main__ - INFO - Batch size: 32
+2025-11-06 22:26:13,581 - __main__ - INFO - Learning rate: 2e-05
+2025-11-06 22:26:13,581 - __main__ - INFO - ==================================================
+2025-11-06 22:26:13,691 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:13,692 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:13,699 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:13,699 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:13,700 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:13,700 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:13,705 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:13,705 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:14,554 - jieba - DEBUG - Loading model cost 0.854 seconds.
+2025-11-06 22:26:14,554 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:14,575 - jieba - DEBUG - Loading model cost 0.876 seconds.
+2025-11-06 22:26:14,575 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:14,593 - jieba - DEBUG - Loading model cost 0.901 seconds.
+2025-11-06 22:26:14,593 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:14,597 - jieba - DEBUG - Loading model cost 0.892 seconds.
+2025-11-06 22:26:14,597 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:29,384 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_1.pth
+2025-11-06 22:26:29,384 - __main__ - INFO - Epoch 1/10 | Train Loss: 0.5371, Acc: 0.7274 | Val Loss: 0.2948, Acc: 0.8875, F1: 0.8875
+2025-11-06 22:26:29,537 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:29,538 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:29,538 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:29,538 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:29,543 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:29,544 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:29,558 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:29,559 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:30,428 - jieba - DEBUG - Loading model cost 0.885 seconds.
+2025-11-06 22:26:30,429 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:30,439 - jieba - DEBUG - Loading model cost 0.902 seconds.
+2025-11-06 22:26:30,439 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:30,444 - jieba - DEBUG - Loading model cost 0.905 seconds.
+2025-11-06 22:26:30,444 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:30,455 - jieba - DEBUG - Loading model cost 0.897 seconds.
+2025-11-06 22:26:30,455 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:42,929 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_2.pth
+2025-11-06 22:26:42,930 - __main__ - INFO - Epoch 2/10 | Train Loss: 0.2649, Acc: 0.9015 | Val Loss: 0.2451, Acc: 0.9142, F1: 0.9142
+2025-11-06 22:26:43,105 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:43,105 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:43,115 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:43,116 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:43,121 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:43,121 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:43,123 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:43,123 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:43,983 - jieba - DEBUG - Loading model cost 0.877 seconds.
+2025-11-06 22:26:43,983 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:44,017 - jieba - DEBUG - Loading model cost 0.902 seconds.
+2025-11-06 22:26:44,017 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:44,027 - jieba - DEBUG - Loading model cost 0.906 seconds.
+2025-11-06 22:26:44,028 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:44,057 - jieba - DEBUG - Loading model cost 0.933 seconds.
+2025-11-06 22:26:44,057 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:56,438 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_3.pth
+2025-11-06 22:26:56,459 - __main__ - INFO - Epoch 3/10 | Train Loss: 0.2244, Acc: 0.9166 | Val Loss: 0.2346, Acc: 0.9175, F1: 0.9175
+2025-11-06 22:26:56,608 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:56,608 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:56,608 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:56,609 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:56,614 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:56,615 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:56,620 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:26:56,621 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:26:57,530 - jieba - DEBUG - Loading model cost 0.910 seconds.
+2025-11-06 22:26:57,530 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:57,551 - jieba - DEBUG - Loading model cost 0.943 seconds.
+2025-11-06 22:26:57,551 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:57,566 - jieba - DEBUG - Loading model cost 0.951 seconds.
+2025-11-06 22:26:57,566 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:26:57,572 - jieba - DEBUG - Loading model cost 0.963 seconds.
+2025-11-06 22:26:57,572 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:09,837 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_4.pth
+2025-11-06 22:27:09,837 - __main__ - INFO - Epoch 4/10 | Train Loss: 0.2036, Acc: 0.9232 | Val Loss: 0.2270, Acc: 0.9258, F1: 0.9258
+2025-11-06 22:27:09,996 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:09,996 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:10,003 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:10,003 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:10,006 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:10,007 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:10,015 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:10,016 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:10,955 - jieba - DEBUG - Loading model cost 0.951 seconds.
+2025-11-06 22:27:10,955 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:10,990 - jieba - DEBUG - Loading model cost 0.974 seconds.
+2025-11-06 22:27:10,990 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:11,019 - jieba - DEBUG - Loading model cost 1.023 seconds.
+2025-11-06 22:27:11,019 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:11,020 - jieba - DEBUG - Loading model cost 1.014 seconds.
+2025-11-06 22:27:11,021 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:23,366 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_5.pth
+2025-11-06 22:27:23,367 - __main__ - INFO - Epoch 5/10 | Train Loss: 0.1777, Acc: 0.9355 | Val Loss: 0.2129, Acc: 0.9325, F1: 0.9325
+2025-11-06 22:27:23,531 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:23,531 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:23,531 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:23,531 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:23,532 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:23,532 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:23,536 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:23,537 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:24,464 - jieba - DEBUG - Loading model cost 0.932 seconds.
+2025-11-06 22:27:24,464 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:24,538 - jieba - DEBUG - Loading model cost 1.006 seconds.
+2025-11-06 22:27:24,538 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:24,556 - jieba - DEBUG - Loading model cost 1.025 seconds.
+2025-11-06 22:27:24,556 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:24,559 - jieba - DEBUG - Loading model cost 1.022 seconds.
+2025-11-06 22:27:24,559 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:36,843 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_6.pth
+2025-11-06 22:27:36,843 - __main__ - INFO - Epoch 6/10 | Train Loss: 0.1740, Acc: 0.9371 | Val Loss: 0.1888, Acc: 0.9350, F1: 0.9350
+2025-11-06 22:27:36,997 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:36,997 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:37,000 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:37,001 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:37,002 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:37,003 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:37,006 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:37,006 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:37,887 - jieba - DEBUG - Loading model cost 0.887 seconds.
+2025-11-06 22:27:37,888 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:37,888 - jieba - DEBUG - Loading model cost 0.891 seconds.
+2025-11-06 22:27:37,888 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:37,921 - jieba - DEBUG - Loading model cost 0.918 seconds.
+2025-11-06 22:27:37,921 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:37,955 - jieba - DEBUG - Loading model cost 0.949 seconds.
+2025-11-06 22:27:37,956 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:50,512 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_7.pth
+2025-11-06 22:27:50,512 - __main__ - INFO - Epoch 7/10 | Train Loss: 0.1514, Acc: 0.9451 | Val Loss: 0.2027, Acc: 0.9367, F1: 0.9367
+2025-11-06 22:27:50,687 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:50,688 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:50,696 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:50,697 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:50,697 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:50,698 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:50,715 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:27:50,715 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:27:51,598 - jieba - DEBUG - Loading model cost 0.901 seconds.
+2025-11-06 22:27:51,598 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:51,605 - jieba - DEBUG - Loading model cost 0.908 seconds.
+2025-11-06 22:27:51,605 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:51,636 - jieba - DEBUG - Loading model cost 0.921 seconds.
+2025-11-06 22:27:51,637 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:27:51,637 - jieba - DEBUG - Loading model cost 0.949 seconds.
+2025-11-06 22:27:51,637 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:03,155 - __main__ - INFO - Epoch 8/10 | Train Loss: 0.1332, Acc: 0.9530 | Val Loss: 0.2086, Acc: 0.9358, F1: 0.9358
+2025-11-06 22:28:03,320 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:03,321 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:03,321 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:03,321 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:03,324 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:03,324 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:03,325 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:03,325 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:04,172 - jieba - DEBUG - Loading model cost 0.847 seconds.
+2025-11-06 22:28:04,172 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:04,193 - jieba - DEBUG - Loading model cost 0.871 seconds.
+2025-11-06 22:28:04,193 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:04,210 - jieba - DEBUG - Loading model cost 0.886 seconds.
+2025-11-06 22:28:04,210 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:04,244 - jieba - DEBUG - Loading model cost 0.923 seconds.
+2025-11-06 22:28:04,245 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:16,527 - __main__ - INFO - Checkpoint saved: /root/autodl-tmp/zh-sentibert/checkpoints/best_model_epoch_9.pth
+2025-11-06 22:28:16,528 - __main__ - INFO - Epoch 9/10 | Train Loss: 0.1355, Acc: 0.9537 | Val Loss: 0.2090, Acc: 0.9375, F1: 0.9375
+2025-11-06 22:28:16,679 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:16,680 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:16,681 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:16,681 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:16,689 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:16,689 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:16,711 - jieba - DEBUG - Building prefix dict from the default dictionary ...
+2025-11-06 22:28:16,712 - jieba - DEBUG - Loading model from cache /tmp/jieba.cache
+2025-11-06 22:28:17,581 - jieba - DEBUG - Loading model cost 0.892 seconds.
+2025-11-06 22:28:17,581 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:17,603 - jieba - DEBUG - Loading model cost 0.924 seconds.
+2025-11-06 22:28:17,603 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:17,615 - jieba - DEBUG - Loading model cost 0.934 seconds.
+2025-11-06 22:28:17,616 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:17,699 - jieba - DEBUG - Loading model cost 0.987 seconds.
+2025-11-06 22:28:17,699 - jieba - DEBUG - Prefix dict has been built successfully.
+2025-11-06 22:28:29,121 - __main__ - INFO - Epoch 10/10 | Train Loss: 0.1326, Acc: 0.9531 | Val Loss: 0.2085, Acc: 0.9367, F1: 0.9366
+2025-11-06 22:28:29,122 - __main__ - INFO - Training history saved: /root/autodl-tmp/zh-sentibert/logs/history_20251106_222829.json
+2025-11-06 22:28:29,972 - __main__ - INFO - Training curves saved: /root/autodl-tmp/zh-sentibert/results/training_curves_20251106_222829.png
+2025-11-06 22:28:29,972 - __main__ - INFO - Training completed! Best epoch: 9
+2025-11-06 22:28:29,973 - __main__ - INFO - Evaluating on test set...
+2025-11-06 22:28:33,313 - __main__ - INFO - 
+==================================================
+2025-11-06 22:28:33,314 - __main__ - INFO - Test Results:
+2025-11-06 22:28:33,314 - __main__ - INFO - ==================================================
+2025-11-06 22:28:33,314 - __main__ - INFO - Accuracy: 0.9450
+2025-11-06 22:28:33,314 - __main__ - INFO - Precision: 0.9451
+2025-11-06 22:28:33,314 - __main__ - INFO - Recall: 0.9450
+2025-11-06 22:28:33,314 - __main__ - INFO - F1-Score: 0.9450
+2025-11-06 22:28:33,314 - __main__ - INFO - AUC: 0.9827
+2025-11-06 22:28:33,314 - __main__ - INFO - 
+Classification Report:
+2025-11-06 22:28:33,314 - __main__ - INFO - 
+              precision    recall  f1-score   support
+
+        负向评价     0.9383    0.9510    0.9446       592
+        正向评价     0.9517    0.9391    0.9454       608
+
+    accuracy                         0.9450      1200
+   macro avg     0.9450    0.9451    0.9450      1200
+weighted avg     0.9451    0.9450    0.9450      1200
+
+2025-11-06 22:28:33,510 - __main__ - INFO - Confusion matrix saved: /root/autodl-tmp/zh-sentibert/results/confusion_matrix_20251106_222833.png
+2025-11-06 22:28:33,513 - __main__ - INFO - Results saved to /root/autodl-tmp/zh-sentibert/results/results_20251106_222833.json
+2025-11-06 22:28:33,513 - __main__ - INFO - Training completed!

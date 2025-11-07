@@ -1,0 +1,27 @@
+2025-11-06 23:07:48,270 - __main__ - INFO - Random seed set to 42
+2025-11-06 23:07:48,270 - __main__ - INFO - Starting prediction mode...
+2025-11-06 23:07:50,227 - __main__ - ERROR - An error occurred: [Errno 21] Is a directory: 'checkpoints/best_model_9.pth'
+Traceback (most recent call last):
+  File "/root/autodl-tmp/zh-sentibert/main_train.py", line 376, in main
+    predict_mode(config, logger, args.checkpoint, args.input_text, args.input_file)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/autodl-tmp/zh-sentibert/main_train.py", line 286, in predict_mode
+    predictor = SentimentPredictor(
+        model_path=str(checkpoint_path),
+    ...<2 lines>...
+        device=config.DEVICE
+    )
+  File "/root/autodl-tmp/zh-sentibert/inference.py", line 41, in __init__
+    self.model = self._load_model(model_path)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/root/autodl-tmp/zh-sentibert/inference.py", line 62, in _load_model
+    checkpoint = torch.load(model_path, map_location=self.device)
+  File "/root/miniconda3/envs/deep-learning/lib/python3.13/site-packages/torch/serialization.py", line 1484, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/root/miniconda3/envs/deep-learning/lib/python3.13/site-packages/torch/serialization.py", line 759, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/root/miniconda3/envs/deep-learning/lib/python3.13/site-packages/torch/serialization.py", line 740, in __init__
+    super().__init__(open(name, mode))
+                     ~~~~^^^^^^^^^^^^
+IsADirectoryError: [Errno 21] Is a directory: 'checkpoints/best_model_9.pth'
