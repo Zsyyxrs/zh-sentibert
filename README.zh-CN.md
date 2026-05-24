@@ -181,4 +181,4 @@ weighted avg     0.9451    0.9450    0.9450      1200
 
 ## 📄 许可证
 
-[MIT](LICENSE) © Zsyyxrs
+[MIT](LICENSE) © Shangyi Zhu

@@ -181,4 +181,4 @@ Issues and PRs are welcome. Run `ruff` before submitting; if you add a new featu
 
 ## 📄 License
 
-[MIT](LICENSE) © Zsyyxrs
+[MIT](LICENSE) © Shangyi Zhu
