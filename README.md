@@ -1,88 +1,184 @@
-# 一. 项目概述
+# zh-sentibert
 
-## 1.1 **项目目标**
-- 识别中文语句的情感状态
-# 二. 模型训练与实验
-## 2.1 **数据集**
-- 数据集：在huggingface上的lansinuote___ChnSentiCorp数据集，包括
-1. test:1200
-2. val: 1200
-3. train: 9600
-- 数据处理：文本清洗（移除HTML标签、移除URLs、移除多余空格、移除特殊字符（保留中文、英文、数字和基本标点））
-- 数据增强：训练集数据用了数据增强，数据增强（同义词替换）概率0.1
-- 创建加权采样器（用于不平衡数据）：根据每个样本权重 = 1 / 类别频率分配采样权重，使得数量少的更容易被采样到
-- drop_last ：训练时最后不完整的批次去掉
-- pin_memory：DataLoader 会在返回 batch 数据前，**将张量拷贝到固定内存（pinned memory）**，以便 **后续更快地传输到 GPU**。数据驻留在物理内存中，不会被交换出，CUDA 可以直接 DMA（直接内存访问）传输到 GPU。GPU 从固定内存中读取数据时**速度更快**；数据传输（CPU → GPU）可以异步执行，提高并行度。
-## 2.2 **模型训练**
-- 基座模型：google-bert/bert-base-chinese  [bert模型地址](https://github.com/google-research/bert/blob/master/multilingual.md) 
-- type_vocab_size：2
-- vocab_size：21128
-- head：12
-- num_hidden_layers: 12
-- hidden_size: 768
-- params：110M
-- 训练环境：V100 单卡机
-- 模型结构：原始模型除了最后两层全部冻结，加入预训练层和输出层
-- 超参数设置与损失函数选择：交叉熵损失函数
+> Read this in: **English** | [简体中文](README.zh-CN.md)
 
-| **模型结构**                      | **准确率提升**          | **参数变化**  |
-| ----------------------------- | ------------------ | --------- |
-| BERT + 直接线性分类                 | baseline           | 少         |
-| BERT + Linear + ReLU + Linear | ↑ 0.5~1.5%（在大数据集上） | 增加少量参数    |
-| BERT + 多层 MLP                 | ↑ 1~3%（需更大数据）      | 参数增多，易过拟合 |
-- 用 Xavier 均匀分布（Xavier Uniform）初始化
+A fine-tuned **BERT-base-Chinese** sentiment classifier for Chinese reviews — trained on **ChnSentiCorp** with selective layer unfreezing, weighted sampling, synonym-based augmentation, mixed-precision training, and warmup-linear LR scheduling.
 
-|**参数类型**|**初始化方法**|**目的**|
-|---|---|---|
-|权重 (weight)|用 Xavier / Kaiming 初始化|保持梯度稳定|
-|偏置 (bias)|用常数（通常是 0）初始化|保持初始对称性、不影响训练稳定性|
-- 权重衰减（weight_decay）
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
+[![Transformers](https://img.shields.io/badge/🤗-Transformers-yellow.svg)](https://huggingface.co/docs/transformers)
 
-| **参数类型**    | **是否衰减** | **原因**    |
-| ----------- | -------- | --------- |
-| 线性层权重       | ✅        | 正则化以防过拟合  |
-| 偏置项         | ❌        | 避免干扰偏移量学习 |
-| LayerNorm权重 | ❌        | 保持归一化稳定性  |
-- warm_up：在训练初期逐步增加学习率，从一个较小的值线性或按规则“升温”到目标学习率，从而让模型训练更稳定、收敛更快。
-- 学习率调度器：采用升温后线性下降的设置，根据设置的WARMUP_RATIO 总步数计算WARMUP步数
-- 采用混合精度训练：torch.amp.GradScaler()可以在混合精度训练时自动缩放梯度
-- model需要定义好前向传播forward()
-	nn.Modoule调用 \_\_call__()：
-	1. 检查模块是否在训练/推理模式
-	2. 处理 forward hooks（钩子函数）
-	3. 调用用户定义的 forward() 函数。
-	4. outputs, loss = self.model.forward(input_ids=..., attention_mask=..., ...)
-- 梯度精简：torch.nn.utils.clip_grad_norm_() 按L2范数裁剪，超过阈值会缩放，防止梯度爆炸
-- 训练日志与评估指标：每10个批次记录一次日志，计算准确率 精确率 召回率 F1 损失等指标，验证时如果是二分类问题时加AUC，根据验证时的accuracy是否是历史最佳，保存最佳模型（模型参数、验证指标）
-- 是否定期保存模型：目前不是
-- 早停机制：连续5次没有超过历史最佳指标触发早停
-## 2.3 **模型评测**
-- 用保存的最佳模型在测试集上测试
-- 模型评测和训练时的差异
+## ✨ Features
 
-| **比较项**   | model.train() | model.eval()           |
-| --------- | ------------- | ---------------------- |
-| 主要用途      | 训练阶段          | 验证/推理阶段                |
-| Dropout   | 启用（随机丢弃）      | 关闭（全保留）                |
-| BatchNorm | 更新均值方差        | 使用固定统计量                |
-| 是否计算梯度    | 是             | 默认是（但常配合 no_grad() 关闭） |
-| 是否影响参数更新  | 是             | 否                      |
+- 🇨🇳 **Chinese sentiment classification** (positive / negative) on `lansinuote/ChnSentiCorp` (9.6k train / 1.2k val / 1.2k test).
+- 🧊 **Selective fine-tuning** — freeze all BERT layers except the last `N`; add a `Linear → ReLU → Linear` head with Xavier init.
+- ⚖️ **Imbalance handling** via `WeightedRandomSampler` and inverse-frequency weights.
+- 🔤 **Light text augmentation** — jieba-tokenised synonym replacement at `augment_prob=0.1`.
+- ⚡ **Mixed precision training** with `torch.amp.GradScaler` + gradient clipping (`max_norm=1.0`).
+- 📉 **Warmup-linear LR schedule** (`get_linear_schedule_with_warmup`).
+- 🛑 **Early stopping** on best validation accuracy (patience = 5).
+- 📊 **Built-in reporting** — accuracy / precision / recall / F1 / AUC, confusion matrix and training curves saved automatically.
+- 🔮 **Inference toolkit** — batch / file / interactive prediction, MC-dropout uncertainty, attention-based explainability.
 
-# 三. 扩展
-## 3.1 **未来扩展**
-- 加入k折交叉验证
-- 加入wandb显示
-# 四. 总结与反思
-## 4.1 **项目成果与意义**
-- 实现中文文本的情感分析
-## 4.2 **问题与改进方向**
-- 数据不足或模型鲁棒性问题
-- 问题记录
+## 🚀 Quick Start
 
-| 问题表现                                                          | 原因                                                            | 解决方案                                                                                                                                                                                                                                      |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Too Many Requests for url: https://hf-mirror.com/api/datasets | load_dataset() 尝试联网去下载数据集，访问太频繁被限流，即使已经下载过数据集，默认情况下它仍然会去联网校验。 | 设置export HF_HUB_OFFLINE=1，使得在离线模式运行，不会下载新数据集和模型,dataset = load_dataset(<br>"lansinuote/ChnSentiCorp",<br>cache_dir="/root/.cache/huggingface/datasets",<br>download_mode="reuse_dataset_if_exists",<br>verification_mode="no_checks"<br>) |
+### 1. Install
 
+```bash
+git clone https://github.com/Zsyyxrs/zh-sentibert.git
+cd zh-sentibert
 
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+# or editable install:
+pip install -e .
+```
 
+### 2. Train
 
+```bash
+python scripts/train.py --epochs 10 --batch_size 32 --lr 2e-5
+```
+
+Best checkpoint is written to `checkpoints/best_model_epoch_*.pth`; metrics, curves and the confusion matrix land in `results/`.
+
+### 3. Evaluate
+
+```bash
+python scripts/train.py --mode eval --checkpoint checkpoints/best_model_epoch_X.pth
+```
+
+### 4. Predict
+
+```bash
+# Single text
+python scripts/train.py --mode predict --input_text "这家店的氛围真的绝绝子"
+
+# File of texts (one per line)
+python scripts/train.py --mode predict --input_file examples/sample_texts.txt
+
+# Interactive REPL
+python scripts/train.py --mode predict
+```
+
+### 5. Use as a library
+
+```python
+from transformers import AutoTokenizer
+from zh_sentibert import Config, SentimentPredictor
+
+tokenizer = AutoTokenizer.from_pretrained(Config.MODEL_PATH)
+predictor = SentimentPredictor(
+    model_path="checkpoints/best_model_epoch_5.pth",
+    tokenizer=tokenizer,
+    config=Config,
+)
+print(predictor.predict("电影剧情还可以，就是节奏有点慢。", return_probs=True))
+```
+
+## 🏗 Architecture
+
+```
+                ┌──────────────────────────┐
+   Raw text ──▶ │  DataProcessor.clean()   │  strip HTML / URLs / specials
+                └────────────┬─────────────┘
+                             ▼
+                ┌──────────────────────────┐
+                │  ImprovedDataset         │  tokenize + synonym aug. (jieba)
+                │  WeightedRandomSampler   │  rebalance class frequencies
+                └────────────┬─────────────┘
+                             ▼
+   ┌──────────────────────────────────────────────────┐
+   │  bert-base-chinese (12L · 12H · 768d · 110M)     │
+   │  ── last N layers + pooler unfrozen ──           │
+   └────────────┬─────────────────────────────────────┘
+                ▼
+   [CLS] pooled  ──▶  Dropout ──▶ Linear(768→768) ──▶ ReLU
+                                                       │
+                              Dropout ◀────────────────┘
+                                  │
+                                  ▼
+                       Linear(768 → 2)  →  softmax  →  {负向, 正向}
+
+   Training: AdamW · CE loss · warmup-linear LR · AMP · grad-clip · early stop
+```
+
+Source layout:
+
+```
+zh-sentibert/
+├── src/zh_sentibert/        # Importable package
+│   ├── config.py            # Hyperparameters + paths
+│   ├── data_utils.py        # Dataset, sampler, augmenter, cleaning
+│   ├── model.py             # ImprovedModel / MultiTask / Attention variants
+│   ├── trainer.py           # Train/val/test loops, metrics, plotting
+│   └── inference.py         # SentimentPredictor + interactive REPL
+├── scripts/
+│   ├── train.py             # CLI entrypoint (train / eval / predict)
+│   └── download_dataset.py  # Cache ChnSentiCorp from HF
+├── examples/
+│   └── sample_texts.txt     # Demo inputs for prediction
+├── docs/images/             # Architecture & result screenshots
+├── results/                 # Generated metrics, curves, confusion matrices
+├── logs/                    # Training logs and history JSON
+├── pyproject.toml
+├── requirements.txt
+└── LICENSE
+```
+
+## 🛠 Tech Stack
+
+| Layer             | Tooling                                                      |
+| ----------------- | ------------------------------------------------------------ |
+| Base model        | `google-bert/bert-base-chinese` (12L, 768d, 110M params)   |
+| Framework         | PyTorch ≥ 2.0 · Hugging Face `transformers` ≥ 4.30      |
+| Data              | `datasets` (`lansinuote/ChnSentiCorp`)                   |
+| Chinese tokeniser | `jieba` (for synonym-based augmentation only)              |
+| Metrics & plots   | `scikit-learn` · `matplotlib` · `seaborn`            |
+| Optimisation      | AdamW ·`get_linear_schedule_with_warmup` · `torch.amp` |
+| Experiment log    | `tqdm` + `logging`; optional `wandb`                   |
+
+## 📊 Benchmark / Results
+
+Test set (1200 samples) from ChnSentiCorp, V100 single-GPU, default hyper-params:
+
+| Metric    | Score            |
+| --------- | ---------------- |
+| Accuracy  | **0.9450** |
+| Precision | 0.9451           |
+| Recall    | 0.9450           |
+| F1        | 0.9450           |
+| AUC       | **0.9827** |
+
+<details><summary>Per-class classification report</summary>
+
+```
+              precision    recall  f1-score   support
+   负向评价     0.9383    0.9510    0.9446       592
+   正向评价     0.9517    0.9391    0.9454       608
+   accuracy                         0.9450      1200
+   macro avg     0.9450    0.9451    0.9450      1200
+weighted avg     0.9451    0.9450    0.9450      1200
+```
+
+</details>
+
+| Training curves                                   | Confusion matrix                                    |
+| ------------------------------------------------- | --------------------------------------------------- |
+| ![Training curves](docs/images/training_curves.png) | ![Confusion matrix](docs/images/confusion_matrix.png) |
+
+## 🧪 Troubleshooting
+
+| Symptom                                                           | Cause                                         | Fix                                                                                                             |
+| ----------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `Too Many Requests for url: https://hf-mirror.com/api/datasets` | `load_dataset` re-verifies online each call | `export HF_HUB_OFFLINE=1` and pass `download_mode="reuse_dataset_if_exists", verification_mode="no_checks"` |
+| CUDA OOM                                                          | Batch too large                               | Lower `--batch_size`, or set `Config.USE_FP16 = True` for inference                                         |
+
+## 🤝 Contributing
+
+Issues and PRs are welcome. Run `ruff` before submitting; if you add a new feature, please include a short test or example. See [LICENSE](LICENSE) for the licensing terms.
+
+## 📄 License
+
+[MIT](LICENSE) © Zsyyxrs

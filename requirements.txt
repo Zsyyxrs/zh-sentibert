@@ -1,0 +1,12 @@
+torch>=2.0
+transformers>=4.30
+datasets>=2.10
+scikit-learn>=1.2
+pandas>=1.5
+numpy>=1.23
+jieba>=0.42
+tqdm>=4.65
+matplotlib>=3.6
+seaborn>=0.12
+# Optional:
+# wandb>=0.15

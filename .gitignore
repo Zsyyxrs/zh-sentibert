@@ -1,3 +1,62 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE / AI assistants
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/
+.claude/
+.aider*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Project artifacts
 checkpoints/
 data/
+logs/
+results/
+wandb/
+*.pth
+*.ckpt
+*.bin
+
+# Hugging Face cache (when stored locally)
+.cache/
+hf_cache/

@@ -49,7 +49,7 @@ class SentimentPredictor:
     
     def _load_model(self, model_path: str) -> nn.Module:
         """加载模型"""
-        from model import ImprovedModel
+        from .model import ImprovedModel
         
         # 初始化模型
         model = ImprovedModel(

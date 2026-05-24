@@ -11,7 +11,8 @@ class Config:
     """项目配置类"""
     
     # ============ 路径配置 ============
-    BASE_DIR = Path(__file__).parent
+    # __file__ -> src/zh_sentibert/config.py, project root is two levels up.
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
     
     # 模型路径 - 可通过环境变量设置，否则使用默认值
     MODEL_PATH = 'google-bert/bert-base-chinese'

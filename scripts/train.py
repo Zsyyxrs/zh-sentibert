@@ -1,14 +1,22 @@
 """
-主训练脚本
-使用方法：python main_train.py --epochs 10 --batch_size 32
+主训练脚本 / Main training entrypoint.
+使用方法：python scripts/train.py --epochs 10 --batch_size 32
 """
+import sys
+from pathlib import Path
+
+# Allow running this script without installing the package.
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+_SRC = _PROJECT_ROOT / "src"
+if _SRC.exists() and str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
 import argparse
 import json
 import logging
 import random
 import numpy as np
 import torch
-from pathlib import Path
 from datetime import datetime
 from transformers import AutoTokenizer, AutoModelForMaskedLM, BertTokenizer, get_linear_schedule_with_warmup
 from torch.optim import AdamW
@@ -20,10 +28,10 @@ from datasets import load_dataset
 
 warnings.filterwarnings('ignore')
 
-from config import Config
-from model import ImprovedModel
-from data_utils import create_data_loaders, ImprovedDataset
-from trainer import Trainer
+from zh_sentibert.config import Config
+from zh_sentibert.model import ImprovedModel
+from zh_sentibert.data_utils import create_data_loaders, ImprovedDataset
+from zh_sentibert.trainer import Trainer
 
 def setup_logging(config):
     """设置日志"""
@@ -257,7 +265,7 @@ def eval_mode(config, logger, checkpoint_path):
     model.eval()
     
     # 评估
-    from trainer import evaluate_model
+    from zh_sentibert.trainer import evaluate_model
     results = evaluate_model(model, test_loader, config.DEVICE)
     
     # 打印结果
@@ -283,7 +291,7 @@ def predict_mode(config, logger, checkpoint_path, input_text=None, input_file=No
         logger.info(f"Using latest checkpoint: {checkpoint_path}")
     
     # 初始化predictor
-    from inference import SentimentPredictor
+    from zh_sentibert.inference import SentimentPredictor
     tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH)
     predictor = SentimentPredictor(
         model_path=str(checkpoint_path),
