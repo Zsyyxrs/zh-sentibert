@@ -9,7 +9,7 @@ description = "Chinese sentiment analysis with fine-tuned BERT (bert-base-chines
 readme = "README.md"
 requires-python = ">=3.9"
 license = { file = "LICENSE" }
-authors = [{ name = "shangyi.zhu" }]
+authors = [{ name = "Shangyi Zhu" }]
 keywords = ["nlp", "sentiment-analysis", "bert", "chinese", "pytorch"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
